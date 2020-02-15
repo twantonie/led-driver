@@ -77,4 +77,35 @@ void Pixels::set(int row, int col, bool on) {
   pixels.at(loc) = on;
 }
 
+class LEDDisplay : public Display {
+public:
+  LEDDisplay(LEDPins pins) : pins_(pins), thread_(&LEDDisplay::loop_, this) {}
+
+  ~LEDDisplay() {
+    going_ = false;
+    if (thread_.joinable())
+      thread_.join();
+  }
+
+  void setPixels(Pixels &&pixels) final {
+    if (use_one_) {
+      two_ = pixels;
+    } else {
+      one_ = pixels;
+    }
+
+    change_over_ = true;
+  }
+
+private:
+  void loop_();
+
+  const LEDPins pins_;
+  std::thread thread_;
+
+  bool use_one_{true};
+  std::atomic<bool> change_over_{false}, going_{true};
+  Pixels one_, two_;
+};
+
 } // namespace led_driver

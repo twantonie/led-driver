@@ -17,13 +17,13 @@ int main() {
     wiringPiSetup();
 
     pinMode(pin1, OUTPUT);
-    //pinMode(pin2, OUTPUT);
+    pinMode(pin2, OUTPUT);
 
     while (going) {
       digitalWrite(pin1, HIGH);
-      //digitalWrite(pin2, LOW);
+      digitalWrite(pin2, LOW);
       digitalWrite(pin1, LOW);
-      //digitalWrite(pin2, HIGH);
+      digitalWrite(pin2, HIGH);
     }
   }};
 
