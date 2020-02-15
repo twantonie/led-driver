@@ -21,9 +21,9 @@ int main() {
 
     while (going) {
       digitalWrite(pin1, HIGH);
-      digitalWrite(pin2, LOW);
-      digitalWrite(pin1, LOW);
       digitalWrite(pin2, HIGH);
+      digitalWrite(pin1, LOW);
+      digitalWrite(pin2, LOW);
     }
   }};
 

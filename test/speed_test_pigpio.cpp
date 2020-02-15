@@ -22,10 +22,8 @@ int main() {
     check(gpioSetMode(pin2, PI_OUTPUT));
 
     while (going) {
-      check(gpioWrite(pin1, 1));
-      check(gpioWrite(pin2, 0));
-      check(gpioWrite(pin1, 0));
-      check(gpioWrite(pin2, 1));
+      check(gpioWrite_Bits_0_31_Set((1 << pin1) | (1 << pin2)));
+      check(gpioWrite_Bits_0_31_Clear((1 << pin1) | (1 << pin2)));
     }
   }};
 
